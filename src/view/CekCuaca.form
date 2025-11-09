@@ -104,7 +104,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnTambahFavorit" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnFavorit" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnHapusFavorit" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -123,7 +123,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnTambahFavorit" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCekCuaca" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnFavorit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnHapusFavorit" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
@@ -169,12 +169,12 @@
             <Property name="text" type="java.lang.String" value="Pilih Kota"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnFavorit">
+        <Component class="javax.swing.JButton" name="btnHapusFavorit">
           <Properties>
             <Property name="text" type="java.lang.String" value="Hapus dari Favorit"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFavoritActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHapusFavoritActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
