@@ -362,6 +362,7 @@ public class CekCuaca extends javax.swing.JFrame {
             java.net.URL url = new java.net.URL(data.getIconUrl());
             javax.swing.ImageIcon icon = new javax.swing.ImageIcon(url);
             lblIconCuaca.setIcon(icon);
+            lblIconCuaca.setText("");
         } catch (Exception ex) {
             lblIconCuaca.setIcon(null);
             lblIconCuaca.setText("Ikon tidak tersedia");
