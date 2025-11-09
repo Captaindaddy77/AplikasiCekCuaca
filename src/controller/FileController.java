@@ -12,13 +12,10 @@ import model.Cuaca;
  * @author acer
  */
 public class FileController {
-    private static final String FILE_PATH = "data_cuaca.csv";
 
-    /**
-     * Simpan daftar data cuaca ke file CSV
-     */
-    public void simpanKeCSV(List<Cuaca> dataCuaca) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+    // Simpan daftar data cuaca ke file CSV
+    public void simpanKeCSV(List<Cuaca> dataCuaca, File file) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             // Header CSV
             writer.write("Kota,Negara,Suhu,Kondisi,Deskripsi,Kelembapan,KecepatanAngin,Waktu");
             writer.newLine();
@@ -40,26 +37,24 @@ public class FileController {
         }
     }
 
-    /**
-     * Muat ulang data cuaca dari file CSV ke tabel
-     */
-    public void muatDariCSV(DefaultTableModel tableModel) throws IOException {
-        File file = new File(FILE_PATH);
-        if (!file.exists()) return;
+    // Muat data CSV ke tabel dari file tertentu
+    public void muatDariCSV(DefaultTableModel tableModel, File file) throws IOException {
+    if (!file.exists()) return;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            tableModel.setRowCount(0); // hapus data lama
+    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        String line;
+        tableModel.setRowCount(0); // hapus data lama
 
-            // Lewati header baris pertama
-            reader.readLine();
+        // Lewati header
+        reader.readLine();
 
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 8) {
-                    tableModel.addRow(parts);
-                }
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(",");
+            if (parts.length == 8) {
+                // Tetap simpan semua sebagai String, jangan parse ke Double
+                tableModel.addRow(parts);
             }
         }
     }
+}
 }

@@ -12,6 +12,7 @@ package view;
 import controller.CuacaController;
 import controller.FileController;
 import model.Cuaca;
+import javax.swing.table.DefaultTableModel;
 import model.LokasiFavorit;
 import java.util.ArrayList;
 import java.util.List;
@@ -383,28 +384,62 @@ public class CekCuaca extends javax.swing.JFrame {
     private void btnSimpanCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanCSVActionPerformed
     JFileChooser fileChooser = new JFileChooser();
     fileChooser.setDialogTitle("Simpan Data Cuaca");
+    
+    // Membuat filter agar hanya bisa simpan .csv
+    fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("CSV Files", "csv"));
+
     int userSelection = fileChooser.showSaveDialog(this);
 
     if (userSelection == JFileChooser.APPROVE_OPTION) {
-    try {
-        fileController.simpanKeCSV(daftarCuaca);
-        JOptionPane.showMessageDialog(this, "Data berhasil disimpan ke data_cuaca.csv");
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + e.getMessage());
-    }
-    }        // TODO add your handling code here:
+        File fileToSave = fileChooser.getSelectedFile();
+
+        // Pastikan file berekstensi .csv
+        if (!fileToSave.getName().toLowerCase().endsWith(".csv")) {
+            fileToSave = new File(fileToSave.getAbsolutePath() + ".csv");
+        }
+
+        try {
+            fileController.simpanKeCSV(daftarCuaca, fileToSave); // versi baru dengan parameter File
+            JOptionPane.showMessageDialog(this, "Data berhasil disimpan ke " + fileToSave.getAbsolutePath());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + e.getMessage());
+        }
+    }                                                      // TODO add your handling code here:
     }//GEN-LAST:event_btnSimpanCSVActionPerformed
 
     private void btnMuatDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMuatDataActionPerformed
-    try {
-        javax.swing.table.DefaultTableModel model = 
-            (javax.swing.table.DefaultTableModel) tblCuaca.getModel();
-        fileController.muatDariCSV(model);
-        JOptionPane.showMessageDialog(this, "Data berhasil dimuat dari data_cuaca.csv");
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage());
-    
-    }        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Pilih File CSV Data Cuaca");
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("CSV Files", "csv"));
+        int userSelection = fileChooser.showOpenDialog(this);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToOpen = fileChooser.getSelectedFile();
+            DefaultTableModel model = (DefaultTableModel) tblCuaca.getModel();
+            model.setRowCount(0); // kosongkan tabel lama
+
+            try (BufferedReader reader = new BufferedReader(new FileReader(fileToOpen))) {
+                String line;
+                reader.readLine(); // skip header
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts.length == 8) {
+                        Object[] row = new Object[]{
+                            parts[0], parts[1],
+                            Double.parseDouble(parts[2]),
+                            parts[3],
+                            Integer.parseInt(parts[5]),
+                            Double.parseDouble(parts[6]),
+                            parts[7]
+                        };
+                        model.addRow(row);
+                    }
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage());
+            }
+        }
+  // TODO add your handling code here:
     }//GEN-LAST:event_btnMuatDataActionPerformed
 
     private void btnFavoritActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritActionPerformed
