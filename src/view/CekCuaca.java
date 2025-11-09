@@ -7,6 +7,25 @@
  *
  * @author acer
  */
+
+// ====== import package API dan JSON ======
+import java.net.*;
+import java.io.*;
+import org.json.*;
+
+// ====== import untuk simpan/muat file ======
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+
+// ====== import waktu dan tambahan ======
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 public class CekCuaca extends javax.swing.JFrame {
 
     /**
@@ -85,7 +104,7 @@ public class CekCuaca extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnCekCuaca, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                        .addComponent(btnCekCuaca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnTambahFavorit)
                         .addGap(341, 341, 341))
@@ -138,7 +157,7 @@ public class CekCuaca extends javax.swing.JFrame {
                     .addComponent(lblKondisi)
                     .addComponent(lblKelembapan)
                     .addComponent(jLabel8))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(782, Short.MAX_VALUE))
         );
         lblKecepatanAnginLayout.setVerticalGroup(
             lblKecepatanAnginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,6 +197,9 @@ public class CekCuaca extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblCuaca);
+        if (tblCuaca.getColumnModel().getColumnCount() > 0) {
+            tblCuaca.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         btnSimpanCSV.setText("Simpan CSV");
 
