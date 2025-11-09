@@ -25,7 +25,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-          <Component id="lblKecepatanAngin" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
           <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
@@ -41,7 +41,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblKecepatanAngin" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -92,21 +92,20 @@
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnCekCuaca" max="32767" attributes="0"/>
+                          <Component id="btnCekCuaca" pref="122" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnTambahFavorit" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="341" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="lblLokasi" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtKotaBaru" max="32767" attributes="0"/>
-                              <Component id="cbKota" pref="163" max="32767" attributes="0"/>
+                              <Component id="cbKota" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="381" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="341" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -135,11 +134,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Tambah ke Favorit"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTambahFavoritActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCekCuaca">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cek Cuaca"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCekCuacaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtKotaBaru">
         </Component>
@@ -165,22 +170,22 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="lblKecepatanAngin">
+    <Container class="javax.swing.JPanel" name="jPanel3">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblSuhu" min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="lblIkonCuaca" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lblNamaKota" min="-2" max="-2" attributes="0"/>
                       <Component id="lblKondisi" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblKelembapan" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSuhu" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="lblKelembapan" min="-2" pref="107" max="-2" attributes="0"/>
+                      <Component id="lblKecepatanAngin" alignment="0" pref="170" max="32767" attributes="0"/>
+                      <Component id="lblIconCuaca" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="782" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -190,15 +195,15 @@
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="lblNamaKota" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="lblIkonCuaca" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="lblIconCuaca" min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblKondisi" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="lblSuhu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lblKelembapan" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblKecepatanAngin" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -210,7 +215,7 @@
             <Property name="text" type="java.lang.String" value="Kota"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblIkonCuaca">
+        <Component class="javax.swing.JLabel" name="lblIconCuaca">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ikon"/>
           </Properties>
@@ -230,7 +235,7 @@
             <Property name="text" type="java.lang.String" value="Kelembapan"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel8">
+        <Component class="javax.swing.JLabel" name="lblKecepatanAngin">
           <Properties>
             <Property name="text" type="java.lang.String" value="Kecepatan Angin"/>
           </Properties>
@@ -278,7 +283,7 @@
             <Component class="javax.swing.JTable" name="tblCuaca">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="7" rowCount="4">
+                  <Table columnCount="7" rowCount="0">
                     <Column editable="true" title="Kota" type="java.lang.String"/>
                     <Column editable="true" title="Negara" type="java.lang.String"/>
                     <Column editable="true" title="Suhu (&#xb0;C)" type="java.lang.Double"/>
@@ -338,11 +343,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Simpan CSV"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSimpanCSVActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnMuatData">
           <Properties>
             <Property name="text" type="java.lang.String" value="Muat Data"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMuatDataActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
