@@ -61,6 +61,30 @@ public class CekCuaca extends javax.swing.JFrame {
         cbKota.addItem("Denpasar");
 }
 }
+    // ====== Fungsi terjemahkan kondisi cuaca ke bahasa Indonesia ======
+    private String terjemahkanKondisi(String kondisiInggris) {
+        switch (kondisiInggris.toLowerCase()) {
+            case "clear":
+                return "Cerah";
+            case "clouds":
+                return "Berawan";
+            case "rain":
+                return "Hujan";
+            case "drizzle":
+                return "Gerimis";
+            case "thunderstorm":
+                return "Badai Petir";
+            case "snow":
+                return "Salju";
+            case "mist":
+            case "fog":
+            case "haze":
+                return "Kabut";
+            default:
+                return kondisiInggris; // kalau belum ada mapping, tampilkan aslinya
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -350,7 +374,7 @@ public class CekCuaca extends javax.swing.JFrame {
             data.getNamaKota(),
             data.getNegara(),
             data.getSuhu(),
-            data.getKondisi(),
+            terjemahkanKondisi(data.getKondisi()),
             data.getKelembapan(),
             data.getKecepatanAngin(),
             data.getWaktu()
