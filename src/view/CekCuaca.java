@@ -78,6 +78,7 @@ public class CekCuaca extends javax.swing.JFrame {
         txtKotaBaru = new javax.swing.JTextField();
         cbKota = new javax.swing.JComboBox<>();
         lblLokasi = new javax.swing.JLabel();
+        btnFavorit = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblNamaKota = new javax.swing.JLabel();
         lblIconCuaca = new javax.swing.JLabel();
@@ -132,24 +133,33 @@ public class CekCuaca extends javax.swing.JFrame {
 
         lblLokasi.setText("Pilih Kota");
 
+        btnFavorit.setText("Hapus dari Favorit");
+        btnFavorit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFavoritActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
+                .addComponent(lblLokasi)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnCekCuaca, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnTambahFavorit))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblLokasi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtKotaBaru)
-                            .addComponent(cbKota, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(txtKotaBaru)
+                    .addComponent(cbKota, 0, 200, Short.MAX_VALUE))
                 .addGap(341, 341, 341))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCekCuaca, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnTambahFavorit)
+                .addGap(18, 18, 18)
+                .addComponent(btnFavorit)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +173,8 @@ public class CekCuaca extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTambahFavorit)
-                    .addComponent(btnCekCuaca))
+                    .addComponent(btnCekCuaca)
+                    .addComponent(btnFavorit))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -341,15 +352,31 @@ public class CekCuaca extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCekCuacaActionPerformed
 
     private void btnTambahFavoritActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahFavoritActionPerformed
-    String kotaBaru = txtKotaBaru.getText().trim();
-    if (!kotaBaru.isEmpty()) {
-        lokasiFavorit.tambahFavorit(kotaBaru);
+    int selectedIndex = cbKota.getSelectedIndex();
+
+    if (selectedIndex == -1) {
+        JOptionPane.showMessageDialog(this, "Pilih kota yang ingin dihapus terlebih dahulu!");
+        return;
+    }
+
+    String kota = cbKota.getSelectedItem().toString();
+    int konfirmasi = JOptionPane.showConfirmDialog(
+        this,
+        "Apakah kamu yakin ingin menghapus kota \"" + kota + "\" dari daftar?",
+        "Konfirmasi Hapus Kota",
+        JOptionPane.YES_NO_OPTION
+    );
+
+    if (konfirmasi == JOptionPane.YES_OPTION) {
+        // Hapus dari combo box
+        cbKota.removeItemAt(selectedIndex);
+
+        // Hapus dari daftarFavorit dan simpan ke file
+        LokasiFavorit lokasiFavorit = new LokasiFavorit(); // pastikan ini sama instance yang dipakai load awal
+        lokasiFavorit.hapusFavorit(kota);
         lokasiFavorit.saveToFile();
-        isiKota();
-        txtKotaBaru.setText("");
-        JOptionPane.showMessageDialog(this, "Kota " + kotaBaru + " ditambahkan ke favorit!");
-    } else {
-        JOptionPane.showMessageDialog(this, "Masukkan nama kota terlebih dahulu!");
+
+        JOptionPane.showMessageDialog(this, "Kota \"" + kota + "\" berhasil dihapus dari daftar.");
     }// TODO add your handling code here:
     }//GEN-LAST:event_btnTambahFavoritActionPerformed
 
@@ -379,6 +406,34 @@ public class CekCuaca extends javax.swing.JFrame {
     
     }        // TODO add your handling code here:
     }//GEN-LAST:event_btnMuatDataActionPerformed
+
+    private void btnFavoritActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritActionPerformed
+    int selectedIndex = cbKota.getSelectedIndex();
+
+    if (selectedIndex == -1) {
+        JOptionPane.showMessageDialog(this, "Pilih kota yang ingin dihapus terlebih dahulu!");
+        return;
+    }
+
+    String kota = cbKota.getSelectedItem().toString();
+    int konfirmasi = JOptionPane.showConfirmDialog(
+        this,
+        "Apakah kamu yakin ingin menghapus kota \"" + kota + "\" dari daftar?",
+        "Konfirmasi Hapus Kota",
+        JOptionPane.YES_NO_OPTION
+    );
+
+    if (konfirmasi == JOptionPane.YES_OPTION) {
+        // Hapus dari daftarFavorit dan simpan ke file
+        lokasiFavorit.hapusFavorit(kota);
+        lokasiFavorit.saveToFile();
+
+        // Hapus dari combo box
+        cbKota.removeItemAt(selectedIndex);
+
+        JOptionPane.showMessageDialog(this, "Kota \"" + kota + "\" berhasil dihapus dari daftar.");
+    }   // TODO add your handling code here:
+    }//GEN-LAST:event_btnFavoritActionPerformed
 
     /**
      * @param args the command line arguments
@@ -417,6 +472,7 @@ public class CekCuaca extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCekCuaca;
+    private javax.swing.JButton btnFavorit;
     private javax.swing.JButton btnMuatData;
     private javax.swing.JButton btnSimpanCSV;
     private javax.swing.JButton btnTambahFavorit;

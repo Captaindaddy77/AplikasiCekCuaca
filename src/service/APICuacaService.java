@@ -25,7 +25,7 @@ public class APICuacaService {
 
         // ✅ Gunakan format API yang benar dan jelas metric-nya
         String urlStr = "https://api.openweathermap.org/data/2.5/weather?q=" 
-                        + encodedCity + "&appid=" + API_KEY + "&units=metric";
+                        + encodedCity + "&appid=" + API_KEY + "&units=metric&lang=id";
 
         // Membuka koneksi
         URL url = new URL(urlStr);
