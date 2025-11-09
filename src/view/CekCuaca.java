@@ -92,6 +92,7 @@ public class CekCuaca extends javax.swing.JFrame {
         tblCuaca = new javax.swing.JTable();
         btnSimpanCSV = new javax.swing.JButton();
         btnMuatData = new javax.swing.JButton();
+        btnBersih = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplikasi Cek Cuaca ");
@@ -130,8 +131,6 @@ public class CekCuaca extends javax.swing.JFrame {
             }
         });
 
-        cbKota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         lblLokasi.setText("Pilih Kota");
 
         btnHapusFavorit.setText("Hapus dari Favorit");
@@ -149,10 +148,10 @@ public class CekCuaca extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(lblLokasi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtKotaBaru)
-                    .addComponent(cbKota, 0, 200, Short.MAX_VALUE))
-                .addGap(341, 341, 341))
+                    .addComponent(cbKota, 0, 223, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnCekCuaca, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,7 +159,7 @@ public class CekCuaca extends javax.swing.JFrame {
                 .addComponent(btnTambahFavorit)
                 .addGap(18, 18, 18)
                 .addComponent(btnHapusFavorit)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 217, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,8 +210,8 @@ public class CekCuaca extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lblNamaKota)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblIconCuaca, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIconCuaca, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblKondisi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -259,15 +258,24 @@ public class CekCuaca extends javax.swing.JFrame {
             }
         });
 
+        btnBersih.setText("Bersih");
+        btnBersih.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBersihActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(344, 344, 344)
+                .addGap(273, 273, 273)
                 .addComponent(btnSimpanCSV)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(btnMuatData)
+                .addGap(31, 31, 31)
+                .addComponent(btnBersih)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
         );
@@ -277,7 +285,8 @@ public class CekCuaca extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpanCSV)
-                    .addComponent(btnMuatData))
+                    .addComponent(btnMuatData)
+                    .addComponent(btnBersih))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -455,6 +464,12 @@ public class CekCuaca extends javax.swing.JFrame {
     }   // TODO add your handling code here:
     }//GEN-LAST:event_btnHapusFavoritActionPerformed
 
+    private void btnBersihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBersihActionPerformed
+    DefaultTableModel model = (DefaultTableModel) tblCuaca.getModel();
+    model.setRowCount(0); // hapus semua baris di JTable
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBersihActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -491,6 +506,7 @@ public class CekCuaca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBersih;
     private javax.swing.JButton btnCekCuaca;
     private javax.swing.JButton btnHapusFavorit;
     private javax.swing.JButton btnMuatData;
